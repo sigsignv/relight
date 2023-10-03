@@ -1,0 +1,13 @@
+{
+    "name": "relight/relight",
+    "version": "0.1.0",
+    "license": [
+        "Apache-2.0",
+        "MIT-0"
+    ],
+    "autoload": {
+        "psr-4": {
+            "Relight\\": "lib/"
+        }
+    }
+}
