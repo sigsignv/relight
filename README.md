@@ -1,4 +1,16 @@
-Details: https://delight.rentalbbs.net/delight.html
+# relight
 
-# Lisence
-The license in the LICENSE.txt file applies, unless a separate license is listed in the source code.
+religit は delight v2 <sup>[1]</sup> をフォークした掲示板ソフトウェアです。
+
+[1]: https://delightly.xyz/
+
+## Author
+
+- author: nore (webmaster@rentalbbs.net)
+- modifier: Sigsign (sig@signote.cc)
+
+## License
+
+Apache-2.0/MIT-0
+
+(delight v2 licensed under the WTFPL.)
