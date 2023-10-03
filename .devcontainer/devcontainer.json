@@ -1,0 +1,31 @@
+{
+	"name": "PHP",
+
+	// Using Docker Compose
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "app",
+	"workspaceFolder": "/workspace",
+
+	// Open Forward Ports
+	"forwardPorts": [8080],
+
+	// instead root
+	"remoteUser": "vscode",
+
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"EditorConfig.EditorConfig",            // EditorConfig for VS Code
+				"bmewburn.vscode-intelephense-client",  // PHP Intelephense
+				"neilbrayfield.php-docblocker",         // PHP DocBlocker
+				"MehediDracula.php-namespace-resolver"  // PHP Namespace Resolver
+			],
+			"settings": {
+				"php.suggest.basic": false,
+				"php.validate.enable": false,
+				"namespaceResolver.sortAlphabetically": true,
+				"namespaceResolver.sortOnSave": true
+			}
+		}
+	}
+}
