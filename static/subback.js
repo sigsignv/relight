@@ -9,7 +9,7 @@ function newPost(bbs, key, css, title, number, nres, created, t) {
       <span class="created">CREATED</span>
       <span class="speed">SPEED</span>
     </span>
-  </a>';
+  </a>
   */
 
   const link = document.createElement('a');
@@ -42,7 +42,66 @@ function newPost(bbs, key, css, title, number, nres, created, t) {
   link.appendChild(small);
   link.appendChild(date);
 
-  console.log('<a class="t" href="/#'+bbs+'/'+key+'/"><span class="title" style="'+css+'">'+title+'</span><small>(レス:'+number+nres+')</small><span class="date"><span class="created">'+created+'</span> <span class="speed">'+t+'</span></span></a>');
+  return link;
+}
+
+function newPostSP(bbs, key, css, title, number, nres, created, t) {
+  'use strict';
+
+  /*
+  <a class="t" href="/#BBSNAME/KEY/">
+    <span class="right">NUMBER</span>
+    NRES
+    <div class="title" style="font-weight: bold;">TITLE</div>
+    <span class="date">
+      <span class="right">
+        <span class="speed">SPEED</span>
+      </span>
+      <span class="created">CREATED</span>
+    </span>
+  </a>
+  */
+
+  const link = document.createElement('a');
+  link.className = 't';
+  link.href = `/#${bbs}/${key}/`;
+
+  const num = document.createElement('span');
+  num.className = 'right';
+  num.textContent = number;
+
+  const unreadCount = document.createTextNode(nres);
+
+  const tname = document.createElement('div');
+  tname.className = 'title';
+  tname.style = css;
+  tname.textContent = title;
+
+  const date = document.createElement('span');
+  date.className = 'date';
+
+  const box = document.createElement('span');
+  box.className = 'right';
+
+  const speed = document.createElement('span');
+  speed.className = 'speed';
+  speed.textContent = t;
+
+  const created_at = document.createElement('span');
+  created_at.className = 'created'
+  created_at.textContent = created;
+
+  box.appendChild(speed);
+
+  date.appendChild(box);
+  date.appendChild(created_at)
+
+  link.appendChild(num);
+  link.appendChild(unreadCount);
+  link.appendChild(tname);
+  link.appendChild(date);
+
+  console.log('<a class="t" href="/#'+bbs+'/'+key+'/"><span class="right">'+number+'</span>'+nres+'<div class="title" style="'+css+'">'+title+'</div><span class="date"><span class="right"><span class="speed">'+t+'</span></span><span class="created">'+created+'</span></span></a>');
 
   console.log(link.outerHTML);
 
