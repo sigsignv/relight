@@ -1,3 +1,54 @@
+function newPost(bbs, key, css, title, number, nres, created, t) {
+  'use strict';
+
+  /*
+  <a class="t" href="/#BBSNAME/KEY/">
+    <span class="title" style="font-weight: bold;">TITLE</span>
+    <small>(レス:NUMBER/未読:X')</small>
+    <span class="date">
+      <span class="created">CREATED</span>
+      <span class="speed">SPEED</span>
+    </span>
+  </a>';
+  */
+
+  const link = document.createElement('a');
+  link.className = 't';
+  link.href = `/#${bbs}/${key}/`;
+
+  const tname = document.createElement('span');
+  tname.className = 'title';
+  tname.style = css;
+  tname.textContent = title;
+
+  const small = document.createElement('small');
+  small.textContent = `(レス:${number}${nres})`;
+
+  const date = document.createElement('span');
+  date.className = 'date';
+
+  const created_at = doucment.createElement('span');
+  created_at.className = 'created'
+  created_at.textContent = created;
+
+  const speed = document.createElement('span');
+  speed.className = 'speed';
+  speed.textContent = t;
+
+  date.appendChild(created_at);
+  date.appendChild(speed);
+
+  link.appendChild(tname);
+  link.appendChild(small);
+  link.appendChild(date);
+
+  console.log('<a class="t" href="/#'+bbs+'/'+key+'/"><span class="title" style="'+css+'">'+title+'</span><small>(レス:'+number+nres+')</small><span class="date"><span class="created">'+created+'</span> <span class="speed">'+t+'</span></span></a>');
+
+  console.log(link.outerHTML);
+
+  return link;
+}
+
   let ls = new URLSearchParams(window.location.search);
   let spcheck = '';
   let kakolog,archive;
@@ -124,7 +175,7 @@ function load(target) {
   if (NG) return;
   let newpost = document.createElement("div");
   newpost.className = 'threads';
-  if (isSmartPhone() == false) newpost.innerHTML = '<a class="t" href="/#'+bbs+'/'+key+'/"><span class="title" style="'+css+'">'+title+'</span><small>(レス:'+number+nres+')</small><span class="date"><span class="created">'+created+'</span> <span class="speed">'+t+'</span></span></a>';
+  if (isSmartPhone() == false) newpost.appendChild(newPost(bbs, key, css, title, number, nres, created, t))
   else newpost.innerHTML = '<a class="t" href="/#'+bbs+'/'+key+'/"><span class="right">'+number+'</span>'+nres+'<div class="title" style="'+css+'">'+title+'</div><span class="date"><span class="right"><span class="speed">'+t+'</span></span><span class="created">'+created+'</span></span></a>';
   document.getElementById('main').appendChild(newpost);
   });
