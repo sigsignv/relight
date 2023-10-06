@@ -234,8 +234,8 @@ function load(target) {
   if (NG) return;
   let newpost = document.createElement("div");
   newpost.className = 'threads';
-  if (isSmartPhone() == false) newpost.appendChild(newPost(bbs, key, css, title, number, nres, created, t))
-  else newpost.innerHTML = '<a class="t" href="/#'+bbs+'/'+key+'/"><span class="right">'+number+'</span>'+nres+'<div class="title" style="'+css+'">'+title+'</div><span class="date"><span class="right"><span class="speed">'+t+'</span></span><span class="created">'+created+'</span></span></a>';
+  if (isSmartPhone() == false) newpost.appendChild(newPost(bbs, key, css, title, number, nres, created, t));
+  else newpost.appendChild(newPostSP(bbs, key, css, title, number, nres, created, t));
   document.getElementById('main').appendChild(newpost);
   });
  }
