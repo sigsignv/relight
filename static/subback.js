@@ -101,10 +101,6 @@ function newPostSP(bbs, key, css, title, number, nres, created, t) {
   link.appendChild(tname);
   link.appendChild(date);
 
-  console.log('<a class="t" href="/#'+bbs+'/'+key+'/"><span class="right">'+number+'</span>'+nres+'<div class="title" style="'+css+'">'+title+'</div><span class="date"><span class="right"><span class="speed">'+t+'</span></span><span class="created">'+created+'</span></span></a>');
-
-  console.log(link.outerHTML);
-
   return link;
 }
 
