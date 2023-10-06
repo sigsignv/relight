@@ -27,7 +27,7 @@ function newPost(bbs, key, css, title, number, nres, created, t) {
   const date = document.createElement('span');
   date.className = 'date';
 
-  const created_at = doucment.createElement('span');
+  const created_at = document.createElement('span');
   created_at.className = 'created'
   created_at.textContent = created;
 
