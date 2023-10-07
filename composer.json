@@ -4,5 +4,8 @@
     "license": [
         "Apache-2.0",
         "MIT-0"
-    ]
+    ],
+    "require": {
+        "symfony/http-foundation": "^5.4"
+    }
 }
