@@ -87,7 +87,3 @@ function Error2($error) {
 </html>
 <?php exit;
 }
-
-function makeDir($path) {
- return is_dir($path) || mkdir($path, 0777, true);
-}	

@@ -1,4 +1,7 @@
 <?php
+
+require_once __DIR__ . '/../app/compat/file.php';
+
 if (!isset($_POST['board'])) $_POST['board'] = '';
 if (!isset($_POST['thread'])) $_POST['thread'] = '';
 if (!isset($_POST['comment'])) $_POST['comment'] = '';

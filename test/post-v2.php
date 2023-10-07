@@ -55,7 +55,3 @@ function Error2($error) {
  setcookie("response", mb_convert_encoding($error, 'HTML-ENTITIES', 'UTF-8'), $NOWTIME+5, "/");
  exit($error);
 }
-
-function makeDir($path) {
- return is_dir($path) || mkdir($path, 0777, true);
-}
