@@ -298,9 +298,9 @@ function getCookie(key, tmp1, tmp2, xx1, xx2, xx3) {
 }
 
 if (!getCookie("WrtAgreementKey")) document.getElementById('postForm').innerHTML = '<div><a href="/test/auth.php">投稿時に使用する同意鍵がありません。<br>投稿を行うには投稿前確認画面での同意が必要です。</a></div>'+document.getElementById('postForm').innerHTML;
-if (!getCookie("icon") && document.getElementById('seticon')) document.getElementById('seticon').style.display = 'none';
-if (getCookie("icon")) document.getElementById("icon").src = getCookie("icon");
-if (getCookie("homepage")) document.getElementById("iconlink").href = getCookie("homepage");
+
+// Todo: あとで消す
+document.getElementById('seticon').style.display = 'none';
 
 if (areload == "true" && document.getElementById('postForm').style.display != "none") {
  setInterval(load, 5000);
