@@ -11,10 +11,6 @@ if (localStorage.getItem('darkmode') == "true" || (localStorage.getItem('autodar
 document.getElementById('body').innerHTML += '<link href="/static/dark.css" rel="stylesheet">';
 if (isSmartPhone() == false) document.getElementById('body').innerHTML += '<style>#postForm{background: #262626 !important;}</style>';
 }
-if (localStorage.getItem('backimg')) {
-	if (localStorage.getItem('darkmode') == "true") document.getElementById('body').innerHTML += '<style>#body{position: relative;background-color: rgba(38,38,38,0.75) !important}.section {position: relative;} .section:before { content: ""; display: block;  position: fixed;  top: 0;  left: 0;  width: 100%;  height: 100vh;  background: url('+localStorage.getItem('backimg')+') center top no-repeat;  background-size: 100% auto;}.asetting_4,.topmenu,.title,.thread,.cLength,.newposts,.bottommenu{background-color: transparent !important;}</style>';
-	else document.getElementById('body').innerHTML += '<style>#body{position: relative;}.section {position: relative;} .section:before { content: ""; display: block;  position: fixed;  top: 0;  left: 0;  width: 100%;  height: 100vh;  background: url('+localStorage.getItem('backimg')+') center top no-repeat;  background-size: 100% auto;}.asetting_4,.topmenu,.title,.thread,.cLength,.newposts,.bottommenu{background-color: transparent !important;}</style>';
-}
 
 function isSmartPhone() {
 let v = false;
