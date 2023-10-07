@@ -9,5 +9,8 @@
         "psr-4": {
             "Relight\\": "lib/"
         }
+    },
+    "require": {
+        "symfony/http-foundation": "^5.4"
     }
 }
