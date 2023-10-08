@@ -489,7 +489,7 @@ function rclose() {
 }
 
 function Menu() {
-document.getElementById('modal_text').innerHTML = '<div style="font-weight:bold;">ミュート設定</div><a class="menulink" href="javascript:mute(\'list\')">ID</a>&emsp;<a class="menulink" href="javascript:MenuClick(\'ngword\')">Word</a>&emsp;<a class="menulink" href="javascript:MenuClick(\'ngtitle\')">タイトル</a><div style="font-weight:bold;">その他</div><a class="menulink" href="javascript:MenuClick(\'setting\')">閲覧設定</a>&emsp;<a class="menulink" href="/test/backimg.html">背景画像</a>&emsp;<a class="menulink" href="/test/css.html">カスタムcss</a><br><a class="menulink" href="javascript:setclear()">全ログを削除</a>&emsp;<a class="menulink" href="/test/auth.php">認証</a>';
+document.getElementById('modal_text').innerHTML = '<div style="font-weight:bold;">ミュート設定</div><a class="menulink" href="javascript:mute(\'list\')">ID</a>&emsp;<a class="menulink" href="javascript:MenuClick(\'ngword\')">Word</a>&emsp;<a class="menulink" href="javascript:MenuClick(\'ngtitle\')">タイトル</a><div style="font-weight:bold;">その他</div><a class="menulink" href="javascript:MenuClick(\'setting\')">閲覧設定</a>&emsp;<a class="menulink" href="/test/css.html">カスタムcss</a><br><a class="menulink" href="javascript:setclear()">全ログを削除</a>&emsp;<a class="menulink" href="/test/auth.php">認証</a>';
 document.getElementById('rModal').style.display = 'block';
 }
 

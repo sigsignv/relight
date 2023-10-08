@@ -504,16 +504,6 @@ $_POST['comment'] = preg_replace('/==(.*?)==/','<mark>$1</mark>',$_POST['comment
 // 下線
 $_POST['comment'] = preg_replace('/\+\+(.*?)\+\+/','<ins>$1</ins>',$_POST['comment']);
 
-// アイコン
-if ($_POST['icon'] == "on" && $_COOKIE['icon'] && $SETTING['DISABLE_ICON'] != "checked") {
- $_COOKIE['icon'] = preg_replace('/(https?|[^a-zA-Z0-9\.\-\/]+)/', '',$_COOKIE['icon']);
- $_COOKIE['homepage'] = preg_replace('/(https?|[^a-zA-Z0-9\.\-\/@\_\?=]+)/', '',$_COOKIE['homepage']);
- if (strlen($_COOKIE['icon']) > 150 || strlen($_COOKIE['icon']) < 10 || strpos($_COOKIE['icon'],'//') === false) Error("アイコンURLが異常です。削除するか再度設定してください");
- if (strlen($_COOKIE['homepage']) > 150 || strlen($_COOKIE['homepage']) < 10 || strpos($_COOKIE['homepage'],'//') === false) Error("ホームページURLが異常です。削除するか再度設定してください");
- if ($_COOKIE['homepage']) $_POST['comment'] = '<a href="'.$_COOKIE['homepage'].'" target="_blank"><img src="'.$_COOKIE['icon'].'" class="icon" width="50" height="50" align="left"></a>'.$_POST['comment'];
- else $_POST['comment'] = '<img src="'.$_COOKIE['icon'].'" class="icon" width="50" height="50" align="left">'.$_POST['comment'];
-}
-
 // AAモード
 if ($aa || $SETTING['BBS_AA'] == "checked") {
  $_POST['comment'] = '<span class="AA">'.$_POST['comment'].'</span>';

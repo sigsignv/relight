@@ -298,9 +298,9 @@ function getCookie(key, tmp1, tmp2, xx1, xx2, xx3) {
 }
 
 if (!getCookie("WrtAgreementKey")) document.getElementById('postForm').innerHTML = '<div><a href="/test/auth.php">投稿時に使用する同意鍵がありません。<br>投稿を行うには投稿前確認画面での同意が必要です。</a></div>'+document.getElementById('postForm').innerHTML;
-if (!getCookie("icon") && document.getElementById('seticon')) document.getElementById('seticon').style.display = 'none';
-if (getCookie("icon")) document.getElementById("icon").src = getCookie("icon");
-if (getCookie("homepage")) document.getElementById("iconlink").href = getCookie("homepage");
+
+// Todo: あとで消す
+document.getElementById('seticon').style.display = 'none';
 
 if (areload == "true" && document.getElementById('postForm').style.display != "none") {
  setInterval(load, 5000);
@@ -473,7 +473,7 @@ if (isSmartPhone() == true) {
 }
 
 function Menu(n) {
-document.getElementById('modal_text').innerHTML = '<a class="menulink" href="javascript:Num(\'\')">投稿欄を開く</a>&emsp;<a class="menulink" href="javascript:Num(\''+n+'\')">&gt;&gt;'+n+' へ返信</a><div style="font-weight:bold;">ミュート設定</div><a class="menulink" href="javascript:mute(\'list\')">ID</a>&emsp;<a class="menulink" href="javascript:MenuClick(\'ngword\')">Word</a>&emsp;<a class="menulink" href="javascript:MenuClick(\'ngtitle\')">タイトル</a><div style="font-weight:bold;">レス情報コピー</div><a class="menulink" href="javascript:MenuClick(\'Copyr-'+n+'\')">レス</a>&emsp;<a class="menulink" href="javascript:MenuClick(\'Copyur-'+n+'\')">URL+レス</a>&emsp;<a class="menulink" href="javascript:MenuClick(\'Copytur-'+n+'\')">タイトル+URL+レス</a>&emsp;<a class="menulink" href="javascript:MenuClick(\'Copyu-'+n+'\')">URL</a><div style="font-weight:bold;">スレッド</div><a class="menulink" href="javascript:logclear()">このスレのログを削除</a>&emsp;<a <a class="menulink" href="/test/createthread.php?bbs='+bbs+'&key='+key+'">次スレッド作成</a><br><a class="menulink" href="javascript:MenuClick(\'CopyThreadLink\')">タイトルとスレッドURLをコピー</a><br><a class="menulink" href="javascript:MenuClick(\'CopyLink\')">スレッドURLをコピー</a><br><div style="font-weight:bold;">その他</div><a class="menulink" href="javascript:MenuClick(\'setting\')">閲覧設定</a>&emsp;<a class="menulink" href="/test/backimg.html">背景画像</a>&emsp;<a class="menulink" href="/test/css.html">カスタムcss</a><br><a class="menulink" href="javascript:setclear()">全ログを削除</a>&emsp;<a class="menulink" href="/test/auth.php">認証</a>';
+document.getElementById('modal_text').innerHTML = '<a class="menulink" href="javascript:Num(\'\')">投稿欄を開く</a>&emsp;<a class="menulink" href="javascript:Num(\''+n+'\')">&gt;&gt;'+n+' へ返信</a><div style="font-weight:bold;">ミュート設定</div><a class="menulink" href="javascript:mute(\'list\')">ID</a>&emsp;<a class="menulink" href="javascript:MenuClick(\'ngword\')">Word</a>&emsp;<a class="menulink" href="javascript:MenuClick(\'ngtitle\')">タイトル</a><div style="font-weight:bold;">レス情報コピー</div><a class="menulink" href="javascript:MenuClick(\'Copyr-'+n+'\')">レス</a>&emsp;<a class="menulink" href="javascript:MenuClick(\'Copyur-'+n+'\')">URL+レス</a>&emsp;<a class="menulink" href="javascript:MenuClick(\'Copytur-'+n+'\')">タイトル+URL+レス</a>&emsp;<a class="menulink" href="javascript:MenuClick(\'Copyu-'+n+'\')">URL</a><div style="font-weight:bold;">スレッド</div><a class="menulink" href="javascript:logclear()">このスレのログを削除</a>&emsp;<a <a class="menulink" href="/test/createthread.php?bbs='+bbs+'&key='+key+'">次スレッド作成</a><br><a class="menulink" href="javascript:MenuClick(\'CopyThreadLink\')">タイトルとスレッドURLをコピー</a><br><a class="menulink" href="javascript:MenuClick(\'CopyLink\')">スレッドURLをコピー</a><br><div style="font-weight:bold;">その他</div><a class="menulink" href="javascript:MenuClick(\'setting\')">閲覧設定</a>&emsp;<a class="menulink" href="/test/css.html">カスタムcss</a><br><a class="menulink" href="javascript:setclear()">全ログを削除</a>&emsp;<a class="menulink" href="/test/auth.php">認証</a>';
 document.getElementById('rModal').style.display = 'block';
 }
 
