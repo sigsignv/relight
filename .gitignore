@@ -4,3 +4,6 @@
 
 # Temporary ignore
 composer.lock
+
+# Ignoring user data
+/test/HAP/*.cgi
