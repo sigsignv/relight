@@ -12,18 +12,11 @@ declare(strict_types=1);
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing;
-use Symfony\Component\Routing\Route;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
 $request = Request::createFromGlobals();
-
-$routes = new Routing\RouteCollection();
-$routes->add('bbs_cgi', new Route('/test/bbs.cgi', [
-    '_controller' => function () {
-        return new Response('It works!');
-    }
-]));
+$routes = include __DIR__ . '/../app/routes.php';
 
 $context = new Routing\RequestContext();
 $context->fromRequest($request);
