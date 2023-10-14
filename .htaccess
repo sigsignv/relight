@@ -4,3 +4,11 @@ Header set Content-Type 'text/html; charset=UTF-8'
 <FilesMatch "\.js$">
 Header set Content-Type 'application/javascript; charset=UTF-8'
 </FilesMatch>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ public/index.php [L]
+</IfModule>
