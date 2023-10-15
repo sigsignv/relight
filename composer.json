@@ -5,6 +5,11 @@
         "Apache-2.0",
         "MIT-0"
     ],
+    "autoload": {
+        "psr-4": {
+            "Relight\\": "app/Relight/"
+        }
+    },
     "require": {
         "symfony/http-foundation": "^5.4",
         "symfony/routing": "^5.4"
