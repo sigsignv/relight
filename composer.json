@@ -10,6 +10,9 @@
             "Relight\\": "app/Relight/"
         }
     },
+    "config": {
+        "sort-packages": true
+    },
     "require": {
         "symfony/http-foundation": "^5.4",
         "symfony/routing": "^5.4"
