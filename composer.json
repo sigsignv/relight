@@ -1,6 +1,6 @@
 {
     "name": "relight/relight",
-    "version": "0.1.0",
+    "description": "A delight v2 fork",
     "license": [
         "Apache-2.0",
         "MIT-0"
