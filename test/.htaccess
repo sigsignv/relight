@@ -1,7 +1,3 @@
 <Files ~ "^(bbs-main\.php|createcode\.cgi)$">
   deny from all
 </Files>
-RewriteEngine on
-RewriteRule read.cgi read.php
-RewriteRule bbs.cgi bbs.php
-SetEnvIf Request_URI "bbs.php$" CONTENT_TYPE=application/x-www-form-urlencoded

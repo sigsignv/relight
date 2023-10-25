@@ -10,15 +10,17 @@
 
 declare(strict_types=1);
 
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
 
 $routes = new RouteCollection();
 $routes->add('bbs_cgi', new Route('/test/bbs.cgi', [
-    '_controller' => function () {
-        return new Response('It works!');
-    }
+    '_encoding' => 'SJIS-win',
+    '_controller' => function (Request $request) {
+        require __DIR__ . '/bridge.php';
+        return bridge($request);
+    },
 ]));
 
 return $routes;

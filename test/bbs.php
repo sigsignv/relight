@@ -18,7 +18,7 @@ if (!isset($_POST['MESSAGE'])) $_POST['MESSAGE'] = '';
 if (!isset($_POST['FROM'])) $_POST['name'] = '';
 if (!isset($_POST['mail'])) $_POST['mail'] = '';
 if (!isset($_POST['subject'])) $_POST['subject'] = '';
-$PATH = "../".$_POST['bbs']."/";
+$PATH = __DIR__ . "/../{$_POST['bbs']}/";
 $NOWTIME = time();
 
 // 一部特殊なアプリが有るためv2ではMonazilla以外のUAも許容する。

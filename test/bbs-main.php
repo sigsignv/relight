@@ -21,7 +21,7 @@ $LOGFILE = $PATH."LOG.cgi";	//投稿ログ・検索用
 $THREADFILE = $PATH."thread/".substr($_POST['thread'], 0, 4)."/".$_POST['thread'].".dat";	//UTF-8 read.html用
 $DATFILE = $PATH."dat/".$_POST['thread'].".dat";	//Shift_JIS 専ブラ用 ※過去ログでは消去
 # 記録ファイルが設置された場所。
-$HAP_PATH = './HAP/';
+$HAP_PATH = __DIR__ . '/HAP/';
 mb_substitute_character('entity');
 $M =  $ken = $ncolor = $Cookmail = $LV = $CAPID = $accountid = '';
 $stop = $admin = $sage = $supervisor = $authorized = $PROXY = false;
@@ -263,7 +263,7 @@ $ACCEPT = $_SERVER['HTTP_ACCEPT'].$_SERVER['HTTP_ACCEPT_LANGUAGE'].$_SERVER['CON
 $SLIP_NAME = 'JP';
 $slip = "0";
 $SLIP_SP = $MM = $WF = false;
-@include './extend/smartphonemarks.php';
+@include __DIR__ . '/extend/smartphonemarks.php';
 
 // 新規スレッドの場合はスレッド番号を現在時刻に設定＆同時刻スレ立て規制
 if ($newthread) {
