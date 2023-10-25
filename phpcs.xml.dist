@@ -3,6 +3,7 @@
     <description>Relight custom ruleset</description>
 
     <file>app</file>
+    <file>public</file>
     <file>tests</file>
 
     <arg name="colors"/>
