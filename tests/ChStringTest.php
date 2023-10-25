@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace Relight\Tests;
+
 use PHPUnit\Framework\TestCase;
 use Relight\ChString;
 

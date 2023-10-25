@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SJIS-win and UTF-8 string converter
  *
@@ -11,7 +12,8 @@ declare(strict_types=1);
 
 namespace Relight;
 
-class ChString {
+class ChString
+{
     private $raw;
     private $string;
 

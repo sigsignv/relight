@@ -13,6 +13,10 @@ trim_trailing_whitespace = false
 indent_style = space
 indent_size = 4
 
+[phpcs.xml{,.dist}]
+indent_style = space
+indent_size = 4
+
 [phpstan.neon{,.dist}]
 indent_style = tab
 tab_width = 4
