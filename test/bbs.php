@@ -1,14 +1,6 @@
 <?php
 error_reporting(E_COMPILE_ERROR | E_RECOVERABLE_ERROR | E_ERROR | E_CORE_ERROR | E_PARSE);
 ob_start();
-if (function_exists('sys_getloadavg')) {
- $loadavg = sys_getloadavg(); //LoadAverageを取得
- if ($loadavg !== false) {
-  // LA200以上は拒否
-  if ($loadavg[0] > 200) Error2("現在高負荷のため、bbs.cgiを一時的に停止しています。お手数ですが、Web版からの投稿をお願いします。 -> LoadAverage:".$loadavg[0]);
-  if ($loadavg[0] > 50 && (empty($_POST['mail']) || strlen($_POST['mail']) !== 9) && (empty($_COOKIE['WrtAgreementKey']) || strlen($_COOKIE['WrtAgreementKey']) !== 8)) finish();
- }
-}
 
 // 専ブラ用なのでShift_JISで出力
 header('Content-Type: text/html; charset=Shift_JIS');
