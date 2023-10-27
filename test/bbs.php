@@ -1,5 +1,4 @@
 <?php
-error_reporting(E_COMPILE_ERROR | E_RECOVERABLE_ERROR | E_ERROR | E_CORE_ERROR | E_PARSE);
 ob_start();
 
 // êƒuƒ‰—p‚È‚Ì‚ÅShift_JIS‚Åo—Í
