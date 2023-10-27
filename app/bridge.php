@@ -17,7 +17,9 @@ function bridge(Request $request): Response
 {
     ob_start();
     require __DIR__ . '/../test/bbs.php';
-    $response = new Response(ob_get_clean());
+    $response = new Response(ob_get_clean(), 200, [
+        'Content-Type' => 'text/html',
+    ]);
     $response->setCharset('Shift_JIS');
 
     return $response;
