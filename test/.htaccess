@@ -1,4 +1,5 @@
-<FilesMatch "\.cgi$">
+# Prevent access to *.cgi (exclude read.cgi / bbs.cgi)
+<FilesMatch "(?<!read|bbs)\.cgi$">
   Deny from all
 </FilesMatch>
 
