@@ -24,14 +24,21 @@ function bridge(Request $request): Response
         ]);
     }
 
-    ob_start();
-    require __DIR__ . '/../test/bbs.php';
+    $loader = new Twig\Loader\FilesystemLoader('templates/compat/', __DIR__);
+    $twig = new Twig\Environment($loader);
 
     $blocker = new Blocker\BoardParameterBlocker();
     if ($blocker->isBlock($request)) {
-        Error2(mb_convert_encoding($blocker->message(), 'SJIS-win', 'UTF-8'));
+        $error = $twig->render('error.html.twig', [
+            'message' => $blocker->message()
+        ]);
+        $response = new Response(mb_convert_encoding($error, 'SJIS-win', 'UTF-8'));
+        $response->setCharset('Shift_JIS');
+        return $response;
     }
 
+    ob_start();
+    require __DIR__ . '/../test/bbs.php';
     $response = new Response(ob_get_clean(), 200, [
         'Content-Type' => 'text/html',
     ]);
