@@ -10,6 +10,7 @@
 
 declare(strict_types=1);
 
+use Relight\Blocker;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -25,6 +26,12 @@ function bridge(Request $request): Response
 
     ob_start();
     require __DIR__ . '/../test/bbs.php';
+
+    $blocker = new Blocker\BoardParameterBlocker();
+    if ($blocker->isBlock($request)) {
+        Error2(mb_convert_encoding($blocker->message(), 'SJIS-win', 'UTF-8'));
+    }
+
     $response = new Response(ob_get_clean(), 200, [
         'Content-Type' => 'text/html',
     ]);

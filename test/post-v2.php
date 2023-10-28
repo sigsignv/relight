@@ -1,5 +1,6 @@
 <?php
 
+use Relight\Blocker;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -15,6 +16,11 @@ if ($request->getMethod() !== 'POST') {
     ]);
     $response->send();
     exit();
+}
+
+$blocker = new Blocker\BoardParameterBlocker();
+if ($blocker->isBlock($request)) {
+    Error2($blocker->message());
 }
 
 ob_start();
