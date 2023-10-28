@@ -26,9 +26,6 @@ mb_substitute_character('entity');
 $M =  $ken = $ncolor = $Cookmail = $LV = $CAPID = $accountid = '';
 $stop = $admin = $sage = $supervisor = $authorized = $PROXY = false;
 
-// GETメソッド
-if ($_SERVER['REQUEST_METHOD'] != 'POST') Error2("invalid:GET");
-
 // 有り得ないPOST情報or本文空
 if (($_POST['title'] && $_POST['thread']) || !$_POST['board'] || strlen($_POST['comment']) == 0) Error2("invalid:1");
 

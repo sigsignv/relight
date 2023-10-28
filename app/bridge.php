@@ -15,6 +15,14 @@ use Symfony\Component\HttpFoundation\Response;
 
 function bridge(Request $request): Response
 {
+    // Require POST method
+    if ($request->getMethod() !== 'POST') {
+        // 405 Method Not Allowed
+        return new Response('', 405, [
+            'Allow' => 'POST',
+        ]);
+    }
+
     ob_start();
     require __DIR__ . '/../test/bbs.php';
     $response = new Response(ob_get_clean(), 200, [

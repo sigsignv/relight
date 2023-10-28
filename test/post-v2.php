@@ -1,4 +1,22 @@
 <?php
+
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+$request = Request::createFromGlobals();
+
+// Require POST method
+if ($request->getMethod() !== 'POST') {
+    // 405 Method Not Allowed
+    $response = new Response('', 405, [
+        'Allow' => 'POST',
+    ]);
+    $response->send();
+    exit();
+}
+
 ob_start();
 header("Accept-CH: Sec-CH-UA-Arch, Sec-CH-UA-Bitness, Sec-CH-UA-Full-Version-List, Sec-CH-UA-Mobile, Sec-CH-UA-Model, Sec-CH-UA-Platform, Sec-CH-UA-Platform-Version");
 header('Content-Type: text/html; charset=UTF-8');
