@@ -9,9 +9,9 @@ $request = Request::createFromGlobals();
 
 // Require POST method
 if ($request->getMethod() !== 'POST') {
-    // 405 Method Not Allowed
-    $response = new Response('', 405, [
+    $response = new Response('Method Not Allowed', 405, [
         'Allow' => 'POST',
+        'Content-Type' => 'text/plain',
     ]);
     $response->send();
     exit();

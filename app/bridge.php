@@ -17,9 +17,9 @@ function bridge(Request $request): Response
 {
     // Require POST method
     if ($request->getMethod() !== 'POST') {
-        // 405 Method Not Allowed
-        return new Response('', 405, [
+        return new Response('Method Not Allowed', 405, [
             'Allow' => 'POST',
+            'Content-Type' => 'text/plain',
         ]);
     }
 
