@@ -18,7 +18,9 @@ if ($request->getMethod() !== 'POST') {
     exit();
 }
 
-$blocker = new Blocker\BoardParameterBlocker();
+$blocker = new Blocker\ChainBlocker([
+    new Blocker\BoardParameterBlocker(),
+]);
 if ($blocker->isBlock($request)) {
     Error2($blocker->message());
 }

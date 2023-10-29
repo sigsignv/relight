@@ -27,7 +27,9 @@ function bridge(Request $request): Response
     $loader = new Twig\Loader\FilesystemLoader('templates/compat/', __DIR__);
     $twig = new Twig\Environment($loader);
 
-    $blocker = new Blocker\BoardParameterBlocker();
+    $blocker = new Blocker\ChainBlocker([
+        new Blocker\BoardParameterBlocker(),
+    ]);
     if ($blocker->isBlock($request)) {
         $error = $twig->render('error.html.twig', [
             'message' => $blocker->message()
