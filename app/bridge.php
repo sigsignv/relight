@@ -28,6 +28,7 @@ function bridge(Request $request): Response
     $twig = new Twig\Environment($loader);
 
     $blocker = new Blocker\ChainBlocker([
+        new Blocker\TimeParameterBlocker(),
         new Blocker\BoardParameterBlocker(),
     ]);
     if ($blocker->isBlock($request)) {

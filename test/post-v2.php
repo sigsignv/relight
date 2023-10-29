@@ -19,6 +19,7 @@ if ($request->getMethod() !== 'POST') {
 }
 
 $blocker = new Blocker\ChainBlocker([
+    new Blocker\TimeParameterBlocker(),
     new Blocker\BoardParameterBlocker(),
 ]);
 if ($blocker->isBlock($request)) {

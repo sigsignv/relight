@@ -22,9 +22,6 @@ $SETTING = json_decode(file_get_contents($setfile), true);
 // êƒuƒ‰“Še‚ª‹–‰Â‚³‚ê‚Ä‚¢‚È‚¢ê‡‚Í‚±‚±‚Å‹‘”Û
 if ($SETTING['2ch_dedicate_browsers'] != "enable") Error2("invalid:2ch dedicate browsers is forbidden.");
 
-// êƒuƒ‰‚È‚Ì‚Étime‚È‚µ
-if (!$_POST['time']) Error2("invalid");
-
 // Shift_JIS‚©‚çUTF-8‚Ö
 mb_convert_variables('UTF-8','SJIS-win',$_POST);
 
