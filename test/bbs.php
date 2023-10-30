@@ -1,14 +1,5 @@
 <?php
-error_reporting(E_COMPILE_ERROR | E_RECOVERABLE_ERROR | E_ERROR | E_CORE_ERROR | E_PARSE);
 ob_start();
-if (function_exists('sys_getloadavg')) {
- $loadavg = sys_getloadavg(); //LoadAverageを取得
- if ($loadavg !== false) {
-  // LA200以上は拒否
-  if ($loadavg[0] > 200) Error2("現在高負荷のため、bbs.cgiを一時的に停止しています。お手数ですが、Web版からの投稿をお願いします。 -> LoadAverage:".$loadavg[0]);
-  if ($loadavg[0] > 50 && (empty($_POST['mail']) || strlen($_POST['mail']) !== 9) && (empty($_COOKIE['WrtAgreementKey']) || strlen($_COOKIE['WrtAgreementKey']) !== 8)) finish();
- }
-}
 
 // 専ブラ用なのでShift_JISで出力
 header('Content-Type: text/html; charset=Shift_JIS');
@@ -18,7 +9,7 @@ if (!isset($_POST['MESSAGE'])) $_POST['MESSAGE'] = '';
 if (!isset($_POST['FROM'])) $_POST['name'] = '';
 if (!isset($_POST['mail'])) $_POST['mail'] = '';
 if (!isset($_POST['subject'])) $_POST['subject'] = '';
-$PATH = "../".$_POST['bbs']."/";
+$PATH = __DIR__ . "/../{$_POST['bbs']}/";
 $NOWTIME = time();
 
 // 一部特殊なアプリが有るためv2ではMonazilla以外のUAも許容する。
@@ -30,9 +21,6 @@ $SETTING = json_decode(file_get_contents($setfile), true);
 
 // 専ブラ投稿が許可されていない場合はここで拒否
 if ($SETTING['2ch_dedicate_browsers'] != "enable") Error2("invalid:2ch dedicate browsers is forbidden.");
-
-// 専ブラなのにtimeなし
-if (!$_POST['time']) Error2("invalid");
 
 // Shift_JISからUTF-8へ
 mb_convert_variables('UTF-8','SJIS-win',$_POST);

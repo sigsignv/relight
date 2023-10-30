@@ -1,5 +1,31 @@
 <?php
-error_reporting(E_COMPILE_ERROR | E_RECOVERABLE_ERROR | E_ERROR | E_CORE_ERROR | E_PARSE);
+
+use Relight\Blocker;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+$request = Request::createFromGlobals();
+
+// Require POST method
+if ($request->getMethod() !== 'POST') {
+    $response = new Response('Method Not Allowed', 405, [
+        'Allow' => 'POST',
+        'Content-Type' => 'text/plain',
+    ]);
+    $response->send();
+    exit();
+}
+
+$blocker = new Blocker\ChainBlocker([
+    new Blocker\TimeParameterBlocker(),
+    new Blocker\BoardParameterBlocker(),
+]);
+if ($blocker->isBlock($request)) {
+    Error2($blocker->message());
+}
+
 ob_start();
 header("Accept-CH: Sec-CH-UA-Arch, Sec-CH-UA-Bitness, Sec-CH-UA-Full-Version-List, Sec-CH-UA-Mobile, Sec-CH-UA-Model, Sec-CH-UA-Platform, Sec-CH-UA-Platform-Version");
 header('Content-Type: text/html; charset=UTF-8');

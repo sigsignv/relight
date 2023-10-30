@@ -1,0 +1,13 @@
+/vendor/
+/phpcs.xml
+/phpstan.neon
+/phpunit.xml
+
+.DS_Store
+.phpunit.result.cache
+
+# Temporary ignore
+composer.lock
+
+# Ignoring user data
+/test/HAP/*.cgi

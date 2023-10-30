@@ -30,7 +30,11 @@ RUN export DEBIAN_FRONTEND=noninteractive \
         patch \
         php-cli \
         php-curl \
+        php-json \
+        php-mbstring \
+        php-pcov \
         php-xml \
+        php-xdebug \
         publicsuffix \
         sqlite3 \
         sudo \
