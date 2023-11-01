@@ -24,8 +24,8 @@ function bridge(Request $request): Response
         ]);
     }
 
-    $loader = new Twig\Loader\FilesystemLoader('templates/compat/', __DIR__);
-    $twig = new Twig\Environment($loader);
+    $loader = new \Twig\Loader\FilesystemLoader('templates/compat/', __DIR__);
+    $twig = new \Twig\Environment($loader);
 
     $blocker = new Blocker\ChainBlocker([
         new Blocker\TimeParameterBlocker(),
@@ -35,14 +35,14 @@ function bridge(Request $request): Response
         $error = $twig->render('error.html.twig', [
             'message' => $blocker->message()
         ]);
-        $response = new Response(mb_convert_encoding($error, 'SJIS-win', 'UTF-8'));
+        $response = new Response(\mb_convert_encoding($error, 'SJIS-win', 'UTF-8'));
         $response->setCharset('Shift_JIS');
         return $response;
     }
 
-    ob_start();
+    \ob_start();
     require __DIR__ . '/../test/bbs.php';
-    $response = new Response(ob_get_clean(), 200, [
+    $response = new Response(\ob_get_clean(), 200, [
         'Content-Type' => 'text/html',
     ]);
     $response->setCharset('Shift_JIS');

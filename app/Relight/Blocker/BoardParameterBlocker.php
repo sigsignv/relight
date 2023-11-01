@@ -24,7 +24,7 @@ class BoardParameterBlocker implements BlockerInterface
         $board = $request->request->get('bbs') ?? $request->request->get('board', '');
 
         // 掲示板のディレクトリは英数字のみ
-        if (preg_match("/[^0-9A-Za-z]/u", $board)) {
+        if (\preg_match("/[^0-9A-Za-z]/u", $board)) {
             return true;
         }
 
