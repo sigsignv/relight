@@ -1,0 +1,86 @@
+<?php
+
+/**
+ * gethostbyaddr() wrapper
+ *
+ * @copyright 2023 Sigsign
+ * @license Apache-2.0 or MIT-0
+ * @author Sigsign <sig@signote.cc>
+ */
+
+declare(strict_types=1);
+
+namespace Relight;
+
+class RemoteHost
+{
+    private string $ip;
+    private string $hostname;
+    private bool $isIPv4;
+
+    public function __construct(string $ip, string $hostname = '')
+    {
+        $r = \filter_var($ip, FILTER_VALIDATE_IP, FILTER_NULL_ON_FAILURE);
+        if (\is_null($r)) {
+            throw new \InvalidArgumentException("Invalid IP address: {$ip}");
+        }
+        $this->ip = $r;
+
+        $r = \filter_var($hostname, FILTER_VALIDATE_DOMAIN, FILTER_NULL_ON_FAILURE | FILTER_FLAG_HOSTNAME);
+        $this->hostname = \is_string($r) ? $r : '';
+
+        $r = \filter_var($ip, FILTER_VALIDATE_IP, FILTER_NULL_ON_FAILURE | FILTER_FLAG_IPV4);
+        $this->isIPv4 = \is_string($r);
+    }
+
+    public function equalTo(RemoteHost $other)
+    {
+        return $this->ip === $other->ip;
+    }
+
+    public function getHostname(): string
+    {
+        // IPv6 は逆引きに頼ってはいけない
+        if ($this->isIPv6()) {
+            return '';
+        }
+
+        if ($this->hostname !== '') {
+            return $this->hostname;
+        }
+
+        // Double reverse lookup
+        $hostname = \gethostbyaddr($this->ip);
+        if ($hostname !== false && $hostname !== $this->ip) {
+            $ip = \gethostbyname($hostname);
+            if ($ip === $this->ip) {
+                $this->hostname = $hostname;
+            }
+        }
+
+        return $this->hostname;
+    }
+
+    public function getIP(): string
+    {
+        return $this->ip;
+    }
+
+    public function isIPv4(): bool
+    {
+        return $this->isIPv4;
+    }
+
+    public function isIPv6(): bool
+    {
+        return !$this->isIPv4;
+    }
+
+    public function __toString()
+    {
+        $ip = $this->getIP();
+        $hostname = $this->getHostname();
+
+        return $hostname === '' ? $ip : "{$hostname} ({$ip})";
+    }
+}
