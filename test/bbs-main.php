@@ -14,7 +14,7 @@ if (!isset($_SERVER['HTTP_SEC_CH_UA_MODEL'])) $_SERVER['HTTP_SEC_CH_UA_MODEL'] =
 if (!isset($_SERVER['HTTP_SEC_CH_UA_MOBILE'])) $_SERVER['HTTP_SEC_CH_UA_MOBILE'] = '';
 if (!isset($_SERVER['HTTP_SEC_CH_UA_FULL_VERSION_LIST'])) $_SERVER['HTTP_SEC_CH_UA_FULL_VERSION_LIST'] = '';
 $DATE = date("Y/m/d H:i:s", $NOWTIME);
-$HOST = gethostbyaddr($_SERVER['REMOTE_ADDR']);
+$HOST = $remote->getHostname();
 $subjectfile = $PATH."subject.json";	//スレッド一覧
 $LTLFILE = $PATH."index.json";	//ローカルタイムライン
 $LOGFILE = $PATH."LOG.cgi";	//投稿ログ・検索用
@@ -45,20 +45,17 @@ else {
 }
 
 // IPv6に対応したサーバ用
-$count_semi = substr_count($_SERVER['REMOTE_ADDR'], ':');
-$count_dot = substr_count($_SERVER['REMOTE_ADDR'], '.');
-if ($count_semi > 0 && $count_dot == 0) $ipv6 = true;
-else $ipv6 = false;
+$ipv6 = $remote->isIPv6();
 // IPアドレス範囲
 if ($ipv6 === true) {
- $d = explode(":", $_SERVER['REMOTE_ADDR']);
+ $d = explode(":", $remote->getIP());
  // IPv6では後半を切り捨て
  $IP_ADDR = $d[0].":".$d[1].":".$d[2].":".$d[3];
  $range = $d[0].":".$d[1].":".substr($d[2], 0, 2);
  $sliphost = $d[0].":".$d[1];
 }else {
- $d = explode(".", $_SERVER['REMOTE_ADDR']);
- $IP_ADDR = $_SERVER['REMOTE_ADDR'];
+ $d = explode(".", $remote->getIP());
+ $IP_ADDR = $remote->getIP();
  $range = $d[0];
  $sliphost = preg_replace("/[0-9]/", "", $HOST);
 }
@@ -405,7 +402,7 @@ if (!empty($_SERVER['HTTP_CF_IPCOUNTRY']) && $_SERVER['HTTP_CF_IPCOUNTRY'] != "J
  $slip = "H";
 }
 // 未承認ユーザーはJPドメイン以外のホストからの投稿禁止
-elseif (!preg_match("/\.jp$/i", $HOST) && !preg_match("/\.bbtec\.net$/", $HOST) && $ipv6 === false && !$SLIP_SP && !$MM && !$WF) {
+elseif (!$remote->match(['/\.jp$/i', '/\.bbtec\.net$/i']) && $ipv6 === false && !$SLIP_SP && !$MM && !$WF) {
  if ($SETTING['BBS_PROXY_CHECK'] == "checked" && !$authorized) Error("未承認ユーザーはJPドメイン以外のホストから投稿することはできません");
  $SLIP_NAME = 'unknown';
  $slip = "H";

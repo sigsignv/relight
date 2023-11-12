@@ -4,3 +4,4 @@ parameters:
 		- app
 		- public
 		- tests
+	treatPhpDocTypesAsCertain: false

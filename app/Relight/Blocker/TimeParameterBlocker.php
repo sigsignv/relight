@@ -25,14 +25,14 @@ class TimeParameterBlocker implements BlockerInterface
         }
 
         $time = $request->request->get('time', -1);
-        $r = filter_var($time, FILTER_VALIDATE_INT, [
+        $r = \filter_var($time, FILTER_VALIDATE_INT, [
             'options' => [
                 'min_range' => 0,
             ],
             'flags' => FILTER_NULL_ON_FAILURE,
         ]);
 
-        return is_null($r);
+        return \is_null($r);
     }
 
     public function message(): string

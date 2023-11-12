@@ -1,6 +1,7 @@
 <?php
 
 use Relight\Blocker;
+use Relight\RemoteHost;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -17,6 +18,8 @@ if ($request->getMethod() !== 'POST') {
     $response->send();
     exit();
 }
+
+$remote = new RemoteHost($request->getClientIp());
 
 $blocker = new Blocker\ChainBlocker([
     new Blocker\TimeParameterBlocker(),
