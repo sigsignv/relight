@@ -11,6 +11,7 @@
 declare(strict_types=1);
 
 use Relight\Blocker;
+use Relight\RemoteHost;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -23,6 +24,8 @@ function bridge(Request $request): Response
             'Content-Type' => 'text/plain',
         ]);
     }
+
+    $remote = new RemoteHost($request->getClientIp());
 
     $loader = new \Twig\Loader\FilesystemLoader('templates/compat/', __DIR__);
     $twig = new \Twig\Environment($loader);
