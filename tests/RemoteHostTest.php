@@ -80,4 +80,43 @@ final class RemoteHostTest extends TestCase
         $host = new RemoteHost('2001:db8::1', 'example.com');
         $this->assertEquals('2001:db8::1', $host);
     }
+
+    public function testIncluded(): void
+    {
+        $host = new RemoteHost('203.0.113.1');
+        $this->assertTrue($host->included('203.0.113.0/24'));
+    }
+
+    public function testNotIncluded(): void
+    {
+        $host = new RemoteHost('203.0.113.1');
+        $this->assertFalse($host->included('2001:db8::/32'));
+    }
+
+    public function testIncludedArray(): void
+    {
+        $host = new RemoteHost('2001:db8::1');
+        $this->assertTrue($host->included(['203.0.113.0/24', '2001:db8::/32']));
+    }
+
+    public function testMatch(): void
+    {
+        $host = new RemoteHost('203.0.113.1', 'example.com');
+        $this->assertTrue($host->match('/(example)\.com$/'));
+    }
+
+    public function testNotMatch(): void
+    {
+        $host = new RemoteHost('203.0.113.1', 'example.com');
+        $this->assertFalse($host->match('/(example)\.net$/'));
+    }
+
+    public function testMatchArray(): void
+    {
+        $host = new RemoteHost('203.0.113.1', 'example.com');
+        $matches = [];
+
+        $this->assertTrue($host->match(['/(example)\.net$/', '/(example)\.com$/'], $matches));
+        $this->assertEquals('example', $matches[1]);
+    }
 }

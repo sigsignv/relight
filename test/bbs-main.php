@@ -402,7 +402,7 @@ if (!empty($_SERVER['HTTP_CF_IPCOUNTRY']) && $_SERVER['HTTP_CF_IPCOUNTRY'] != "J
  $slip = "H";
 }
 // 未承認ユーザーはJPドメイン以外のホストからの投稿禁止
-elseif (!preg_match("/\.jp$/i", $HOST) && !preg_match("/\.bbtec\.net$/", $HOST) && $ipv6 === false && !$SLIP_SP && !$MM && !$WF) {
+elseif (!$remote->match(['/\.jp$/i', '/\.bbtec\.net$/i']) && $ipv6 === false && !$SLIP_SP && !$MM && !$WF) {
  if ($SETTING['BBS_PROXY_CHECK'] == "checked" && !$authorized) Error("未承認ユーザーはJPドメイン以外のホストから投稿することはできません");
  $SLIP_NAME = 'unknown';
  $slip = "H";

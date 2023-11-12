@@ -12,6 +12,8 @@ declare(strict_types=1);
 
 namespace Relight;
 
+use Symfony\Component\HttpFoundation\IpUtils;
+
 class RemoteHost
 {
     private string $ip;
@@ -66,6 +68,11 @@ class RemoteHost
         return $this->ip;
     }
 
+    public function included(string|array $ips)
+    {
+        return IpUtils::checkIp($this->ip, $ips);
+    }
+
     public function isIPv4(): bool
     {
         return $this->isIPv4;
@@ -74,6 +81,25 @@ class RemoteHost
     public function isIPv6(): bool
     {
         return !$this->isIPv4;
+    }
+
+    public function match(string|array $pattern, array &$matches = null): bool
+    {
+        if (\is_array($pattern)) {
+            foreach ($pattern as $p) {
+                if ($this->match($p, $matches)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        $r = \preg_match($pattern, $this->getHostname(), $matches);
+        if ($r === false) {
+            throw new \InvalidArgumentException(\preg_last_error_msg());
+        }
+
+        return $r === 1 ? true : false;
     }
 
     public function __toString()
