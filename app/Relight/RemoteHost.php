@@ -68,8 +68,18 @@ class RemoteHost
         return $this->ip;
     }
 
-    public function included(string|array $ips)
+    /**
+     * IP アドレスが引数の IP range に含まれるか否かを返す
+     *
+     * @param string|array $ips
+     * @return boolean
+     */
+    public function included(mixed $ips): bool
     {
+        if (!\is_string($ips) && !\is_array($ips)) {
+            throw new \InvalidArgumentException('Require String or Array');
+        }
+
         return IpUtils::checkIp($this->ip, $ips);
     }
 
@@ -83,8 +93,19 @@ class RemoteHost
         return !$this->isIPv4;
     }
 
-    public function match(string|array $pattern, array &$matches = null): bool
+    /**
+     * リモートホストが引数の正規表現に含まれるか否かを返す
+     *
+     * @param string|array $pattern
+     * @param array|null $matches
+     * @return boolean
+     */
+    public function match(mixed $pattern, array &$matches = null): bool
     {
+        if (!\is_string($pattern) && !\is_array($pattern)) {
+            throw new \InvalidArgumentException('Require String or Array');
+        }
+
         if (\is_array($pattern)) {
             foreach ($pattern as $p) {
                 if ($this->match($p, $matches)) {
