@@ -74,7 +74,7 @@ class RemoteHost
      * @param string|array $ips
      * @return boolean
      */
-    public function included(mixed $ips): bool
+    public function included($ips): bool
     {
         if (!\is_string($ips) && !\is_array($ips)) {
             throw new \InvalidArgumentException('Require String or Array');
@@ -100,7 +100,7 @@ class RemoteHost
      * @param array|null $matches
      * @return boolean
      */
-    public function match(mixed $pattern, array &$matches = null): bool
+    public function match($pattern, array &$matches = null): bool
     {
         if (!\is_string($pattern) && !\is_array($pattern)) {
             throw new \InvalidArgumentException('Require String or Array');
